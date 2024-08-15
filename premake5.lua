@@ -3,7 +3,7 @@
 -- workspace settings
 
 workspace_settings = {}
-workspace_settings.workspace_name 		= "Bunting"
+workspace_settings.workspace_name 		= "fickle"
 workspace_settings.bundle_identifier	= "com.deifickle"
 
 -- Output files directories signature for bin and int-bin
@@ -11,6 +11,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- external dependencies
 include 'lua_scripts/external_dependencies.lua'
+include 'lua_scripts/fickle_config.lua'
 
 -- Current root directory where the global premake file is located
 -- TODO: Use a fixed installation directory in program files insted of an arbitrary thing/ infact use this to verify the proper installation directory
@@ -60,6 +61,7 @@ workspace (workspace_settings.workspace_name)
 project "EngineCore"
     kind "ConsoleApp"
 	architecture "x64"
+    cppdialect "C++20"
    
 	dependson 
 	{ 
@@ -81,6 +83,7 @@ project "EngineCore"
 	includedirs
 	{
 		"%{ExternalIncludeDir.raylib5_64}"
+		,"%{BuntingIncludes.rlimgui}"
 	}
 	
 	
@@ -100,6 +103,7 @@ project "EngineCore"
 project "BuntingEditor"
     kind "StaticLib"
 	architecture "x64"
+    cppdialect "C++20"
 	   
     files
     {
