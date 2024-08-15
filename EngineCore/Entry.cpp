@@ -1,15 +1,10 @@
 #include "EngineHeader.h"
 
-int main(void)
-{
-    InitWindow(800, 450, "Fickle Engine [v0.01]");
-
-    SetTargetFPS(60);
-
     /*
     * ToDo:
     * ***** Editor ******
     * [|] Load Tiles as Texture 
+    *   [|] Add imgui to project
     *   [|] Research
     *       [|] how to load texture
     *       [ ] How to set texture to button - pointer_tile
@@ -69,22 +64,51 @@ int main(void)
     * 
     */
 
+
+int main(void)
+{
+
+    // Initialization
+    //--------------------------------------------------------------------------------------
+    int screenWidth = 1280;
+    int screenHeight = 800;
+
+    SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
+    InitWindow(screenWidth, screenHeight, "Fickle Engine [v0.01]");
+
+    SetTargetFPS(60);
+    rlImGuiSetup(true);
+
+
     BuntingEditor editor;
     editor.init();
 
 
-    while (!WindowShouldClose())
+    // Main game loop
+    while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         BeginDrawing();
+        ClearBackground(DARKGRAY);
 
-        editor.drawMenu();
-        
-        ClearBackground(GetColor(GuiGetStyle(DEFAULT, BACKGROUND_COLOR)));
+        // start ImGui Conent
+        rlImGuiBegin();
+
+        // show ImGui Content
+        bool open = true;
+        ImGui::ShowDemoWindow(&open);
+
+        // end ImGui Content
+        rlImGuiEnd();
 
         EndDrawing();
+        //----------------------------------------------------------------------------------
     }
+    rlImGuiShutdown();
 
-    CloseWindow();
+    // De-Initialization
+    //--------------------------------------------------------------------------------------   
+    CloseWindow();        // Close window and OpenGL context
+    //--------------------------------------------------------------------------------------
 
     return 0;
 }

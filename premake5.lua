@@ -10,7 +10,7 @@ workspace_settings.bundle_identifier	= "com.deifickle"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- external dependencies
-include 'build_scripts/external_dependencies.lua'
+include 'lua_scripts/external_dependencies.lua'
 
 -- Current root directory where the global premake file is located
 -- TODO: Use a fixed installation directory in program files insted of an arbitrary thing/ infact use this to verify the proper installation directory
@@ -81,7 +81,6 @@ project "EngineCore"
 	includedirs
 	{
 		"%{ExternalIncludeDir.raylib5_64}"
-		,"%{ExternalIncludeDir.raygui}"
 	}
 	
 	

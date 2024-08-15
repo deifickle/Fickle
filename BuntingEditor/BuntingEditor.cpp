@@ -15,7 +15,7 @@ void BuntingEditor::init() {
 
 void BuntingEditor::drawMenu() {
 
-    if (GuiButton(rect, "#191#Show Message")) showMsgBox = true;
+    /*if (GuiButton(rect, "#191#Show Message")) showMsgBox = true;
 
     if (showMsgBox)
     {
@@ -23,7 +23,7 @@ void BuntingEditor::drawMenu() {
             "#191#Message Box", "Hi! This is a message!", "Nice;Cool");
 
         if (result >= 0) showMsgBox = false;
-    }
+    }*/
 
     DrawText("Hello Sailor!", 275, 150, 20, LIGHTGRAY);
     DrawText("**Welcome to Fickle editor**", 190, 200, 20, LIGHTGRAY);
