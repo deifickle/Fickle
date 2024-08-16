@@ -54,7 +54,20 @@ void BuntingEditor::init(const EditorSpec& spec) {
     button.init(parrotBtnSpec);
 
     BuntingPanel::PanelSpec pSpec({ "Tiles Panel" });
+    pSpec.buttonsData = spec.buttonData;
     m_tilesPanel.init(pSpec);
+
+    BuntingJsonData* jd = spec.buttonData;
+
+    //std::printf("res error? %s\r\n", err.c_str());
+    std::printf("string =%s\r\n", jd->get("string").get<std::string>().c_str());
+    std::printf("number =%f\r\n", jd->get("number").get<double>());
+    std::printf("integer =%d\r\n", (int)jd->get("integer").get<double>());
+
+    picojson::array list = jd->get("panel").get<picojson::array>();
+    for (picojson::array::iterator iter = list.begin(); iter != list.end(); ++iter) {
+        printf("menu item value =%s\r\n", (*iter).get("v").get<std::string>().c_str());
+    }
 
     BuntingButton::ButtonSpec counterBtnSpec({ "Counter Btn" });
     counterButton.init(counterBtnSpec);

@@ -82,15 +82,14 @@ int main(void)
     SetTargetFPS(60);
     rlImGuiSetup(true);
 
-    BuntingFileIO files;
-    int id = files.openFile("./BuntingEditor/resources/", "BuntingPanel_Tiles.json", BuntingFile::kRead);
-    const char* data = files.getData(id);
-
+    int id = bunOpenFile("./BuntingEditor/resources/", "test.json", BuntingFile::kOpenModeRead);
+    
     BuntingEditor editor;
     BuntingEditor::EditorSpec editorSpec;
     editorSpec.m_fontConfig = nullptr;
     editorSpec.m_fontFilename = "./BuntingEditor/resources/driusstraight.ttf";
     editorSpec.m_fontSize = 18.0f;
+    editorSpec.buttonData = &(bunGetFile(id))->jsonData;
     editor.init(editorSpec);
 
     // Main game loop

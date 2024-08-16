@@ -1,6 +1,8 @@
 #ifndef BUNTING_OBJECT_H
 #define BUNTING_OBJECT_H
 
+#include "FileIO/BuntingFile.h"
+
 struct Spec {};
 
 struct BuntingObject {

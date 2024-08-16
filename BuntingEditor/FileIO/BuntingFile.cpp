@@ -4,15 +4,15 @@ const char* getMode(BuntingFile::KOpenMode mode) {
 
 	switch (mode)
 	{
-	case BuntingFile::kRead:				return "r";
-	case BuntingFile::kWrite:				return "w";
-	case BuntingFile::kReadBinary:			return "rb";
-	case BuntingFile::kWriteBinary:			return "wb";
-	case BuntingFile::kAppend:				return "a";
-	case BuntingFile::kAppendBinary:		return "ab";
-	case BuntingFile::kReadWrite:			return "r+";
-	case BuntingFile::kReadWriteBinary:		return "rb+";
-	default:								assert(false); return "";
+	case BuntingFile::kOpenModeRead:				return "r";
+	case BuntingFile::kOpenModeWrite:				return "w";
+	case BuntingFile::kOpenModeReadBinary:			return "rb";
+	case BuntingFile::kOpenModeWriteBinary:			return "wb";
+	case BuntingFile::kOpenModeAppend:				return "a";
+	case BuntingFile::kOpenModeAppendBinary:		return "ab";
+	case BuntingFile::kOpenModeReadWrite:			return "r+";
+	case BuntingFile::kOpenModeReadWriteBinary:		return "rb+";
+	default:										assert(false); return "";
 	}
 }
 
@@ -64,8 +64,8 @@ char* BuntingFile::read() {
 		{
 			long readSize = fread(content, 1, length, pointerToFile);
 			//if (readSize == length) {
-
-				return content;// success
+			isContentReady = true;
+			return content;// success
 			//}
 			
 			// failure if we reach here. full file is not being read for some reason!
@@ -95,6 +95,7 @@ int BuntingFile::close() {
 		content = nullptr;
 		fullPath = nullptr;
 
+		isContentReady = false;
 		isOpen = false;
 
 		return 0;

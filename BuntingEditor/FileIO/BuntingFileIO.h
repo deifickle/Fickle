@@ -2,7 +2,6 @@
 #define BUNTING_FILE_IO_H
 
 #include "../BuntingObject.h"
-#include "BuntingFile.h"
 
 template <typename T>
 concept is_iterable = requires(T v) {
@@ -78,11 +77,6 @@ struct Stack {
 	}
 };
 
-struct BuntingFileIO {
-	std::list<BuntingFile*> openFiles;
-
-	int openFile(const char* path, const char* filename, BuntingFile::KOpenMode mode);
-	const char* getData(int index);
-};
-
+int bunOpenFile(const char* path, const char* filename, BuntingFile::KOpenMode mode);
+BuntingFile* bunGetFile(int index);
 #endif // !BUNTING_FILE_IO_H
