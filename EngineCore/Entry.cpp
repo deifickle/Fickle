@@ -82,6 +82,10 @@ int main(void)
     SetTargetFPS(60);
     rlImGuiSetup(true);
 
+    BuntingFileIO files;
+    int id = files.openFile("./BuntingEditor/resources/", "BuntingPanel_Tiles.json", BuntingFile::kRead);
+    const char* data = files.getData(id);
+
     BuntingEditor editor;
     BuntingEditor::EditorSpec editorSpec;
     editorSpec.m_fontConfig = nullptr;

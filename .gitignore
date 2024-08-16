@@ -5,6 +5,7 @@
 
 # fickle ignores
 VsProjFiles/
+downloadedResources/
 
 # User-specific files
 *.rsuser

@@ -4,6 +4,13 @@
 // BuntingEditor.h : Include file for standard system include files,
 // or project specific include files.
 
+#include <stdio.h>
+#include <assert.h>
+#include <malloc.h>
+#include <string.h>
+#include <list>
+#include <algorithm>
+
 #include "raylibImgui/include/imgui.h"
 #include "raylibImgui/include/rlImGui.h"
 #include "raylibImgui/include/imgui_impl_raylib.h"

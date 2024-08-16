@@ -1,8 +1,8 @@
 #ifndef BUNTING_EDITOR_H
 #define BUNTING_EDITOR_H
 
-#include "Panels/BuntingPanel.h"
-#include "Buttons/BuntingButton.h"
+#include "BuntingBuilder/BuntingBuilder.h"
+#include "FileIO/BuntingFileIO.h"
 
 struct BuntingEditor : public BuntingObject {
 

@@ -1,0 +1,63 @@
+{
+    "panel": {
+        "title": "Tiles Panel",
+        "ButtonsDiv": {
+            "title": "Walkable Platforms",
+            "Platform1":
+            {
+                "type": "Platform",
+                "name": "Concrete_BM_Grass",
+                "relativeFilePath": "platforms/concrete_bottom_mid_grass",
+                "fileType": "png"
+            },
+            "Platform2":{
+                "type": "Platform",
+                "name": "Concrete_LM_Grass",
+                "relativeFilePath": "platforms/concrete_left_mid_grass",
+                "fileType": "png"
+            },
+            "Platform3":{
+                "type": "Platform",
+                "name": "Concrete_RM_Grass",
+                "relativeFilePath": "platforms/concrete_right_mid_grass",
+                "fileType": "png"
+            },
+            "Platform4":{
+                "type": "Platform",
+                "name": "Concrete_TM_Grass",
+                "relativeFilePath": "platforms/concrete_top_mid_grass",
+                "fileType": "png"
+            },
+            "Platform5":{
+                "type": "Platform",
+                "name": "Concrete_LT_Grass",
+                "relativeFilePath": "platforms/concrete_left_top_grass",
+                "fileType": "png"
+            },
+            "Platform6":{
+                "type": "Platform",
+                "name": "Concrete_RT_Grass",
+                "relativeFilePath": "platforms/concrete_right_top_grass",
+                "fileType": "png"
+            },
+            "Platform7":{
+                "type": "Platform",
+                "name": "Concrete_LB_Grass",
+                "relativeFilePath": "platforms/concrete_left_bottom_grass",
+                "fileType": "png"
+            },
+            "Platform8":{
+                "type": "Platform",
+                "name": "Concrete_RB_Grass",
+                "relativeFilePath": "platforms/concrete_right_bottom_grass",
+                "fileType": "png"
+            },
+            "Platform9":{
+                "type": "Platform",
+                "name": "Concrete_C_Grass",
+                "relativeFilePath": "platforms/concrete_center",
+                "fileType": "png"
+            }
+        }
+    }
+}
