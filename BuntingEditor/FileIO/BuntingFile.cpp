@@ -16,28 +16,31 @@ const char* getMode(BuntingFile::KOpenMode mode) {
 	}
 }
 
-int BuntingFile::open(const char* path, const char* filename, KOpenMode mode) {
+int BuntingFile::open(const char* path, const char* filename, const char* extn, KOpenMode mode) {
 	
 	openMode = mode;
 
 	long filenameLength = strlen(filename);
 	int pathLength = strlen(path);
+	int extnLength = strlen(extn);
 
 	assert(filenameLength > 0);
-	name = (char*)malloc(filenameLength);
+	name = (char*)malloc(1 + filenameLength);
 
 	assert(name);
 	memcpy(name, filename, filenameLength);
 	
-	fullPath = (char*)malloc(1 + strlen(path) + strlen(filename));
+	fullPath = (char*)malloc(2 + pathLength + filenameLength + extnLength);
 
 	assert(fullPath);
 	memcpy(fullPath, path, pathLength);
-	memcpy(fullPath + pathLength, name, filenameLength);
+	memcpy(fullPath + pathLength, filename, filenameLength);
+	fullPath[pathLength + filenameLength] = '.';
+	memcpy(fullPath + pathLength + filenameLength + 1, extn, extnLength);
 
-	pointerToFile = fopen(fullPath, getMode(mode));
+	filePointer = std::ifstream(fullPath);
 
-	if (pointerToFile) {
+	if (filePointer) {
 		isOpen = true;
 		return 0;
 	}
@@ -51,52 +54,35 @@ int BuntingFile::open(const char* path, const char* filename, KOpenMode mode) {
 	}
 }
 
-char* BuntingFile::read() {
-	if (!content) {
+int BuntingFile::read() {
+	if (!isContentReady) {
 		assert(isOpen);//file should've been open by now. 
 
-		fseek(pointerToFile, 0, SEEK_END);
-		length = ftell(pointerToFile);
-
-		fseek(pointerToFile, 0, SEEK_SET);
-		content = (char*)malloc(length * sizeof(char));
-		if (content)
-		{
-			long readSize = fread(content, 1, length, pointerToFile);
-			//if (readSize == length) {
-			isContentReady = true;
-			return content;// success
-			//}
-			
-			// failure if we reach here. full file is not being read for some reason!
-			// hence free the allocated space and return
-			
-			//free(content);
-			//return nullptr;
-		}
-		// unable to read content for some reason
-		return nullptr;
+		// Read the entire file into a string 
+		content = std::string((std::istreambuf_iterator<char>(filePointer)),
+		std::istreambuf_iterator<char>());
+		isContentReady = true;
 	}
-	return content;
+	return 0;
 }
 
 int BuntingFile::close() {
-	if (pointerToFile) {
-		fclose(pointerToFile);
-		pointerToFile = nullptr;
+	if (filePointer) {
+		/*fclose(filePointer);*/
+		
 
 		length = -1;
 
 		delete name;
-		delete content;
 		delete fullPath;
 
 		name = nullptr;
-		content = nullptr;
+		content = "";
 		fullPath = nullptr;
 
 		isContentReady = false;
 		isOpen = false;
+		isJsonParsed = false;
 
 		return 0;
 	}

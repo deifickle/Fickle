@@ -1,9 +1,7 @@
 #include "BuntingPanel.h"
 
 void BuntingPanel::init(const PanelSpec& spec) {
-	if (spec.m_name) {
-		m_name = spec.m_name;
-	}
+	m_name = (*spec.panelData)["panel title"].GetString();
 	m_show = false;
 }
 

@@ -2,9 +2,15 @@
 #define BUNTING_FILE_H
 
 #include "../BuntingCommon_internal.h"
-#include "PicoJSON/picojson.h"
+#include "rapidjson/document.h"
+#include "rapidjson/filereadstream.h" 
+#include "rapidjson/filewritestream.h" 
+#include "rapidjson/writer.h" 
+#include <fstream> 
+#include <iostream> 
 
-typedef picojson::value BuntingJsonData;
+typedef rapidjson::Document BuntingJsonDoc;
+typedef rapidjson::Value	BuntingJsonValue;
 
 struct BuntingFile {
 
@@ -23,18 +29,18 @@ struct BuntingFile {
 	
 	long length = -1;
 
-	FILE* pointerToFile = nullptr;
+	std::ifstream filePointer;
 	bool isOpen = false;
 	bool isContentReady = false;
 	bool isJsonParsed = false;
 
 	char* name = nullptr;
-	char* content = nullptr;
 	char* fullPath = nullptr;
-	BuntingJsonData jsonData;
+	std::string content = "";
+	BuntingJsonDoc jsonDoc;
 
-	int open(const char* path, const char* filename, KOpenMode mode = kOpenModeReadBinary);
-	char* read();
+	int open(const char* path, const char* filename, const char* extn, KOpenMode mode = kOpenModeReadBinary);
+	int read();
 	int close();
 };
 

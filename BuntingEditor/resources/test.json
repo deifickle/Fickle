@@ -1,5 +1,50 @@
 {
-    "string":"it works",
-    "number":3.14,
-    "integer":5
+    "panel title": "Platforms",
+    "panel": [
+        {
+            "section title" : "Walkable Platforms",
+            "Buttons": [
+                {
+                    "type": "Walkable_Platform",
+                    "name": "Concrete_BM_Grass",
+                    "relativeFilePath": "platforms/concrete_bottom_mid_grass",
+                    "fileType": "png"
+                },
+                {
+                    "type": "Walkable_Platform",
+                    "name": "Concrete_LM_Grass",
+                    "relativeFilePath": "platforms/concrete_left_mid_grass",
+                    "fileType": "png"
+                }
+            ]
+        },
+        {
+            "section title" : "Damaging Platforms",
+            "Buttons": [
+                {
+                    "type": "Damaging_Platform",
+                    "name": "Two_Spikes",
+                    "relativeFilePath": "platforms/two_spikes"
+                },
+                {
+                    "type": "Damaging_Platform",
+                    "name": "Blunt_Spinning_Saw_Tooth",
+                    "relativeFilePath": "platforms/blunt_spinning_saw_tooth"
+                }
+            ]
+        },
+        {
+            "section title" : "Interactable Platforms",
+            "Buttons": [
+                {
+                    "type": "Interacting_Platform",
+                    "name": "Two_Spikes"
+                },
+                {
+                    "type": "Interacting_Platform",
+                    "name": "Blunt_Spinning_Saw_Tooth"
+                }
+            ]
+        }
+    ]
 }

@@ -4,6 +4,8 @@
 // BuntingEditor.h : Include file for standard system include files,
 // or project specific include files.
 
+#define BUNTING_VERSION	"0.1.0"
+
 #include <stdio.h>
 #include <assert.h>
 #include <malloc.h>

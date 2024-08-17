@@ -9,8 +9,7 @@ struct BuntingButton;
 struct BuntingPanel : public BuntingObject {
 
 	struct PanelSpec {
-		const char* m_name;
-		BuntingJsonData* buttonsData = nullptr;
+		const BuntingJsonValue* panelData;
 	};
 
 	bool m_show;

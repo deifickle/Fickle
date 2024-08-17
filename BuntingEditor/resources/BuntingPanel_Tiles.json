@@ -1,63 +1,102 @@
 {
-    "panel": {
-        "title": "Tiles Panel",
-        "ButtonsDiv": {
-            "title": "Walkable Platforms",
-            "Platform1":
+    "BuntingJsonVersion" : "0.1.0",
+    "BuntingJsonType": "BuntingEditorGameResources",
+    "BuntingJsonData": {
+        "BuntingDataType": "BuntingEditorButtonsPanel",
+        "panel title": "Platforms",
+        "sections": [
             {
-                "type": "Platform",
-                "name": "Concrete_BM_Grass",
-                "relativeFilePath": "platforms/concrete_bottom_mid_grass",
-                "fileType": "png"
+                "BuntingDataType": "BuntingEditorButtonsSection",
+                "section title" : "Walkable_Platforms",
+                "platform_type": "Walkable_Platform",
+                "relativeFileLocation": "./BuntingEditor/resources/platforms/",
+                "filetype": "png",
+                "Buttons": [
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Concrete_BM_Grass",
+                        "filename": "concrete_bottom_mid_grass"
+                    },
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Concrete_LM_Grass",
+                        "filename": "concrete_left_mid_grass"
+                    },
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Concrete_RM_Grass",
+                        "filename": "concrete_right_mid_grass"
+                    },
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Concrete_TM_Grass",
+                        "filename": "concrete_top_mid_grass"
+                    },
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Concrete_LT_Grass",
+                        "filename": "concrete_left_top_grass"
+                    },
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Concrete_RT_Grass",
+                        "filename": "concrete_right_top_grass"
+                    },
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Concrete_LB_Grass",
+                        "filename": "concrete_left_bottom_grass"
+                    },
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Concrete_RB_Grass",
+                        "filename": "concrete_right_bottom_grass"
+                    },
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Concrete_C_Grass",
+                        "filename": "concrete_center"
+                    }
+                ]
             },
-            "Platform2":{
-                "type": "Platform",
-                "name": "Concrete_LM_Grass",
-                "relativeFilePath": "platforms/concrete_left_mid_grass",
-                "fileType": "png"
+            {
+                "BuntingDataType": "BuntingEditorButtonsSection",
+                "section title" : "Damaging_Platforms",
+                "type": "Damaging_Platform",
+                "relativeFileLocation": "./BuntingEditor/resources/platforms/",
+                "filetype": "png",
+                "Buttons": [
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Two_Spikes",
+                        "filename": "two_spikes"
+                    },
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Blunt_Spinning_Saw_Tooth",
+                        "filename": "blunt_spinning_saw_tooth"
+                    }
+                ]
             },
-            "Platform3":{
-                "type": "Platform",
-                "name": "Concrete_RM_Grass",
-                "relativeFilePath": "platforms/concrete_right_mid_grass",
-                "fileType": "png"
-            },
-            "Platform4":{
-                "type": "Platform",
-                "name": "Concrete_TM_Grass",
-                "relativeFilePath": "platforms/concrete_top_mid_grass",
-                "fileType": "png"
-            },
-            "Platform5":{
-                "type": "Platform",
-                "name": "Concrete_LT_Grass",
-                "relativeFilePath": "platforms/concrete_left_top_grass",
-                "fileType": "png"
-            },
-            "Platform6":{
-                "type": "Platform",
-                "name": "Concrete_RT_Grass",
-                "relativeFilePath": "platforms/concrete_right_top_grass",
-                "fileType": "png"
-            },
-            "Platform7":{
-                "type": "Platform",
-                "name": "Concrete_LB_Grass",
-                "relativeFilePath": "platforms/concrete_left_bottom_grass",
-                "fileType": "png"
-            },
-            "Platform8":{
-                "type": "Platform",
-                "name": "Concrete_RB_Grass",
-                "relativeFilePath": "platforms/concrete_right_bottom_grass",
-                "fileType": "png"
-            },
-            "Platform9":{
-                "type": "Platform",
-                "name": "Concrete_C_Grass",
-                "relativeFilePath": "platforms/concrete_center",
-                "fileType": "png"
+            {
+                "BuntingDataType": "BuntingEditorButtonsSection",            
+                "section title" : "Interactable_Platforms",
+                "type": "Interacting_Platform",
+                "relativeFileLocation": "./BuntingEditor/resources/platforms/",
+                "filetype": "png",
+                "Buttons": [
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Arched_Open_Door",
+                        "filename": "arched_open_door"
+                    },
+                    {
+                        "BuntingDataType": "BuntingEditorButton",
+                        "name": "Blunt_Spinning_Saw_Tooth",
+                        "filename": "blunt_spinning_saw_tooth"
+                    }
+                ]
             }
-        }
+        ]
     }
 }

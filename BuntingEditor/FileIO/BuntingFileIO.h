@@ -77,6 +77,6 @@ struct Stack {
 	}
 };
 
-int bunOpenFile(const char* path, const char* filename, BuntingFile::KOpenMode mode);
+int bunOpenFile(const char* path, const char* filename, const char* extn, BuntingFile::KOpenMode mode);
 BuntingFile* bunGetFile(int index);
 #endif // !BUNTING_FILE_IO_H

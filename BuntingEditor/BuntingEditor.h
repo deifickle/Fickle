@@ -10,7 +10,7 @@ struct BuntingEditor : public BuntingObject {
 		const char* m_fontFilename	= nullptr;
 		float m_fontSize			= -1.0f;
 		ImFontConfig* m_fontConfig	= nullptr;
-		BuntingJsonData* buttonData = nullptr;
+		BuntingJsonDoc* buttonData = nullptr;
 	};
 
 	const char* m_fontFilename	= nullptr;
