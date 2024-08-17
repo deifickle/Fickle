@@ -25,18 +25,19 @@ int BuntingFile::open(const char* path, const char* filename, const char* extn, 
 	int extnLength = strlen(extn);
 
 	assert(filenameLength > 0);
-	name = (char*)malloc(1 + filenameLength);
+	name = (char*)malloc(filenameLength * sizeof(char));
 
 	assert(name);
 	memcpy(name, filename, filenameLength);
-	
-	fullPath = (char*)malloc(2 + pathLength + filenameLength + extnLength);
+	int allocSize = (1 + pathLength + filenameLength + extnLength) * sizeof(char);
+	fullPath = (char*)malloc(allocSize);
 
 	assert(fullPath);
 	memcpy(fullPath, path, pathLength);
 	memcpy(fullPath + pathLength, filename, filenameLength);
 	fullPath[pathLength + filenameLength] = '.';
 	memcpy(fullPath + pathLength + filenameLength + 1, extn, extnLength);
+	fullPath[allocSize] = '\0';
 
 	filePointer = std::ifstream(fullPath);
 

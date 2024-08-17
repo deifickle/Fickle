@@ -3,12 +3,12 @@
     "BuntingJsonType": "BuntingEditorGameResources",
     "BuntingJsonData": {
         "BuntingDataType": "BuntingEditorButtonsPanel",
-        "panel title": "Platforms",
+        "PanelTitle": "Platforms",
         "sections": [
             {
                 "BuntingDataType": "BuntingEditorButtonsSection",
-                "section title" : "Walkable_Platforms",
-                "platform_type": "Walkable_Platform",
+                "SectionTitle" : "Walkable_Platforms",
+                "PlatformType": "Walkable_Platform",
                 "relativeFileLocation": "./BuntingEditor/resources/platforms/",
                 "filetype": "png",
                 "Buttons": [
@@ -61,8 +61,8 @@
             },
             {
                 "BuntingDataType": "BuntingEditorButtonsSection",
-                "section title" : "Damaging_Platforms",
-                "type": "Damaging_Platform",
+                "SectionTitle" : "Damaging_Platforms",
+                "PlatformType": "Damaging_Platform",
                 "relativeFileLocation": "./BuntingEditor/resources/platforms/",
                 "filetype": "png",
                 "Buttons": [
@@ -80,8 +80,8 @@
             },
             {
                 "BuntingDataType": "BuntingEditorButtonsSection",            
-                "section title" : "Interactable_Platforms",
-                "type": "Interacting_Platform",
+                "SectionTitle" : "Interactable_Platforms",
+                "PlatformType": "Interacting_Platform",
                 "relativeFileLocation": "./BuntingEditor/resources/platforms/",
                 "filetype": "png",
                 "Buttons": [

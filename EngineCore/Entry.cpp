@@ -82,7 +82,8 @@ int main(void)
     SetTargetFPS(60);
     rlImGuiSetup(true);
 
-    int id = bunOpenFile("./BuntingEditor/resources/", "BuntingPanel_Tiles", "json", BuntingFile::kOpenModeRead);
+    int id = bunOpenFile("./BuntingEditor/resources/", "BuntingPlatformTilesPanel", "json", BuntingFile::kOpenModeRead);
+    //int id = bunOpenFile("./Bun/", "Bun", "son", BuntingFile::kOpenModeRead);
     
     BuntingEditor editor;
     BuntingEditor::EditorSpec editorSpec;

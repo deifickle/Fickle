@@ -1,0 +1,15 @@
+{
+    "BuntingJsonVersion" : "0.1.0",
+    "BuntingJsonType": "BuntingEditorConfig",
+    "BuntingJsonData": {
+        "BuntingDataType": "BuntingEditorPanelsConfigFileList",
+        "relativeFileLocation": "./BuntingEditor/resources",
+        "filetype": "json",
+        "JsonFiles": [
+            {
+                "filename": "BuntingPlatformTilesPanel"
+            }
+        ]
+
+    }
+}

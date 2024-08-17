@@ -6,6 +6,14 @@
 struct BuntingImageButton;
 struct BuntingButton;
 
+struct BuntingSection : public BuntingObject {
+	struct SectionSpec {
+		const BuntingJsonValue* sectionData;
+	};
+
+	bool show;
+};
+
 struct BuntingPanel : public BuntingObject {
 
 	struct PanelSpec {
@@ -19,6 +27,8 @@ struct BuntingPanel : public BuntingObject {
 
 	virtual void begin();
 	virtual void end();
+
+	std::vector<BuntingSection*> sections;
 };
 
 #endif // !BUNTING_PANEL_H

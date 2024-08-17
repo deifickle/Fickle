@@ -11,6 +11,7 @@
 #include <malloc.h>
 #include <string.h>
 #include <list>
+#include <vector>
 #include <algorithm>
 
 #include "raylibImgui/include/imgui.h"
