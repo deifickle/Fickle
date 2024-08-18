@@ -1,5 +1,62 @@
 #include "BuntingEditor.h"
 
+void bunBuildEditor(BuntingEditor* editor, BuntingJsonDoc* doc) {
+
+    const BuntingJsonValue& panelData = (*doc)["BuntingJsonData"];
+
+    std::string jsonDataType = panelData["BuntingDataType"].GetString();
+    assert(strcmp(jsonDataType.c_str(), "BuntingEditorButtonsPanel") == 0);
+
+    BuntingPanel::PanelSpec panelSpec;
+    panelSpec.name = panelData["PanelTitle"].GetString();
+    panelSpec.show = false;
+
+    BuntingPanel* panel = new BuntingPanel();
+    panel->init(panelSpec);
+
+    const BuntingJsonValue& sectionData = panelData["Sections"];
+    assert(sectionData.IsArray());
+    for (int i = 0; i < sectionData.Size(); i++) {
+
+        std::string jsonDataType = sectionData[i]["BuntingDataType"].GetString();
+        assert(strcmp(jsonDataType.c_str(), "BuntingEditorButtonsSection") == 0);
+
+        BuntingSection::SectionSpec sectionSpec;
+        sectionSpec.name = sectionData[i]["SectionTitle"].GetString();
+        sectionSpec.show = false;
+
+        BuntingSection* section = new BuntingSection();
+        section->init(sectionSpec);
+
+        const BuntingJsonValue& imageButtonData = sectionData[i]["ImageButtons"];
+        assert(imageButtonData.IsArray());
+        for (int j = 0; j < imageButtonData.Size(); j++) {
+
+            std::string jsonDataType = imageButtonData[j]["BuntingDataType"].GetString();
+            assert(strcmp(jsonDataType.c_str(), "BuntingEditorButton") == 0);
+
+            std::string path = imageButtonData[j]["relativeFileLocation"].GetString();
+            std::string name = imageButtonData[j]["filename"].GetString();
+            std::string extn = imageButtonData[j]["filetype"].GetString();
+
+            std::string fullname = path + name + '.' + extn;
+            Texture2D* buttonTexture = new Texture2D();
+            Texture2D texturObj = LoadTexture(fullname.c_str());
+            memcpy(buttonTexture, &texturObj, sizeof(Texture2D));
+
+            BuntingImageButton::ImageButtonSpec imageButtonSpec;
+            imageButtonSpec.m_name = imageButtonData[j]["name"].GetString();
+            imageButtonSpec.m_texture = buttonTexture;
+
+            BuntingImageButton* imageButton = new BuntingImageButton();
+            imageButton->init(imageButtonSpec);
+            section->buttons.push_back(imageButton);
+        }
+        panel->sections.push_back(section);
+    }
+    editor->panels.push_back(panel);
+}
+
 void BuntingEditor::init(const EditorSpec& spec) {
 
     assert(spec.m_fontFilename && spec.m_fontSize);
@@ -54,13 +111,12 @@ void BuntingEditor::init(const EditorSpec& spec) {
     button.init(parrotBtnSpec);
 
     BuntingJsonDoc* jd = spec.buttonData;
-    const BuntingJsonValue& panelData = (*jd)["BuntingJsonData"];
+    bunBuildEditor(this, jd);
+
 
     //const rapidjson::Value & v = (*jd)["ButtonsDiv"];
     //std::cout << v["title"].GetString() << std::endl;
 
-    BuntingPanel::PanelSpec pSpec({ &panelData });
-    m_tilesPanel.init(pSpec);
 
     BuntingButton::ButtonSpec counterBtnSpec({ "Counter Btn" });
     counterButton.init(counterBtnSpec);
@@ -69,6 +125,14 @@ void BuntingEditor::init(const EditorSpec& spec) {
 void BuntingEditor::quash() {
     // no resource created ..
     // nothing to quash here! 
+}
+
+void BuntingEditor::processPanel(BuntingPanel* panel) {
+    if (panel->m_show) {
+        panel->begin();
+        panel->draw();
+        panel->end();
+    }
 }
 
 void BuntingEditor::draw() {
@@ -84,6 +148,7 @@ void BuntingEditor::draw() {
     }*/
 
 
+
     static float f = 0.0f;
     static int counter = 0;
     static int parrotCounter = 0;
@@ -94,7 +159,9 @@ void BuntingEditor::draw() {
     ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
     ImGui::Checkbox("Another Window", &show_another_window);
     ImGui::Checkbox("Welcome Text", &show_welcome_text);
-    ImGui::Checkbox("Show tile panle", &m_tilesPanel.m_show);
+    for (auto panel : panels) {
+        ImGui::Checkbox(panel->m_name, &panel->m_show);
+    }
 
     ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
     ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
@@ -105,14 +172,8 @@ void BuntingEditor::draw() {
     ImGui::SameLine();
     ImGui::Text("counter = %d", counter);
 
-    if (m_tilesPanel.m_show) {
-        m_tilesPanel.begin();
-        imgButton.draw(); //all these butons are drawn there.. 
-        if (imgButton.m_clicked)
-            parrotCounter++;
-        
-        ImGui::Text("parrot counter = %d", parrotCounter);
-        m_tilesPanel.end(); 
+    for (auto panel : panels) {
+        processPanel(panel);
     }
 
     // 3. Show another simple window.
@@ -129,9 +190,9 @@ void BuntingEditor::draw() {
     ImGui::End();
 
     if (show_welcome_text) {
-        DrawText("Hello Sailor!", 275, 150, 20, LIGHTGRAY);
-        DrawText("**Welcome to Fickle editor**", 190, 200, 20, LIGHTGRAY);
-        DrawText("We are just starting!", 230, 250, 20, LIGHTGRAY);
+        DrawText("Hello Sailor!", 375, 150, 20, LIGHTGRAY);
+        DrawText("**Welcome to Bunting Editor**", 290, 200, 20, LIGHTGRAY);
+        DrawText("We are just starting!", 330, 250, 20, LIGHTGRAY);
     }
 
 }

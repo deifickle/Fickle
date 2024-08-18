@@ -2,22 +2,29 @@
 #define BUNTING_PANEL_H
 
 #include "../BuntingCommon_internal.h"
-
-struct BuntingImageButton;
-struct BuntingButton;
+#include "../Buttons/BuntingButton.h"
 
 struct BuntingSection : public BuntingObject {
 	struct SectionSpec {
-		const BuntingJsonValue* sectionData;
+		const char* name;
+		bool show;
 	};
 
-	bool show;
+	bool m_show;
+
+	virtual void init(const SectionSpec& spec);
+	virtual void quash();
+
+	virtual void draw();
+
+	std::vector<BuntingButton*> buttons;
 };
 
 struct BuntingPanel : public BuntingObject {
 
 	struct PanelSpec {
-		const BuntingJsonValue* panelData;
+		const char* name;
+		bool show;
 	};
 
 	bool m_show;
@@ -26,6 +33,7 @@ struct BuntingPanel : public BuntingObject {
 	virtual void quash();
 
 	virtual void begin();
+	virtual void draw();
 	virtual void end();
 
 	std::vector<BuntingSection*> sections;

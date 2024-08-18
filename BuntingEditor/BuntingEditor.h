@@ -11,6 +11,8 @@ struct BuntingEditor : public BuntingObject {
 		float m_fontSize			= -1.0f;
 		ImFontConfig* m_fontConfig	= nullptr;
 		BuntingJsonDoc* buttonData = nullptr;
+		int screenWidth = -1;
+		int screenHeight = -1;
 	};
 
 	const char* m_fontFilename	= nullptr;
@@ -27,7 +29,7 @@ struct BuntingEditor : public BuntingObject {
 	Texture parrot;
 	BuntingImageButton imgButton;
 	BuntingButton button, counterButton;
-	BuntingPanel m_tilesPanel;
+	std::vector<BuntingPanel*> panels;
 
 	ImGuiIO io;
 
@@ -35,6 +37,7 @@ struct BuntingEditor : public BuntingObject {
 	virtual void quash();
 
 	void draw();
+	void processPanel(BuntingPanel* panel);
 };
 
 #endif // !BUNTING_EDITOR_H

@@ -36,5 +36,6 @@ void BuntingImageButton::update() {
 }
 
 void BuntingImageButton::draw() {
+	
 	m_clicked = rlImGuiImageButton(m_name, m_texture);
 }
