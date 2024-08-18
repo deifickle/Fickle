@@ -91,6 +91,8 @@ int main(void)
     editorSpec.m_fontFilename = "./BuntingEditor/resources/driusstraight.ttf";
     editorSpec.m_fontSize = 18.0f;
     editorSpec.buttonData = &(bunGetFile(id))->jsonDoc;
+    editorSpec.screenWidth = screenWidth;
+    editorSpec.screenHeight = screenHeight;
     editor.init(editorSpec);
 
     // Main game loop
