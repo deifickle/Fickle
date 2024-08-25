@@ -40,4 +40,6 @@ struct BuntingEditor : public BuntingObject {
 	void processPanel(BuntingPanel* panel);
 };
 
+void buntingSetKeyCallback(BuntingKeyCallbackFPtr callback);
+
 #endif // !BUNTING_EDITOR_H

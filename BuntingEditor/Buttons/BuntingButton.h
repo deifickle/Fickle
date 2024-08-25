@@ -7,9 +7,11 @@ struct BuntingButton : public BuntingObject {
 
 	struct ButtonSpec {
 		const char* m_name = nullptr;
+		void* BuntingUserData = nullptr;
 	};
 
 	bool		m_clicked;
+	void		*userData;
 
 	virtual void init(const ButtonSpec& spec);
 	virtual void quash();
@@ -32,6 +34,5 @@ struct BuntingImageButton : public BuntingButton {
 	virtual void update();
 	virtual void draw();
 };
-
 
 #endif // !BUNTINE_BUTTON_H

@@ -1,5 +1,12 @@
 #include "BuntingEditor.h"
 
+BuntingEditorState buntingState;
+
+
+void buntingSetKeyCallback(BuntingKeyCallbackFPtr callback) {
+    BUNTING_SWAP_POINTERS(BuntingKeyCallbackFPtr, buntingState.callback.key, callback);
+}
+
 void bunBuildEditor(BuntingEditor* editor, BuntingJsonDoc* doc) {
 
     const BuntingJsonValue& panelData = (*doc)["BuntingJsonData"];
@@ -104,7 +111,10 @@ void BuntingEditor::init(const EditorSpec& spec) {
 
 
 
-    BuntingImageButton::ImageButtonSpec ibSpec({ "parrot", &parrot });
+    BuntingImageButton::ImageButtonSpec ibSpec;
+    ibSpec.m_name = "parrot";
+    ibSpec.m_texture = &parrot;
+
     imgButton.init(ibSpec);
 
     BuntingButton::ButtonSpec parrotBtnSpec({ "show parrot button" });
@@ -136,18 +146,6 @@ void BuntingEditor::processPanel(BuntingPanel* panel) {
 }
 
 void BuntingEditor::draw() {
-
-    /*if (GuiButton(rect, "#191#Show Message")) showMsgBox = true;
-
-    if (showMsgBox)
-    {
-        int result = GuiMessageBox(guiRect,
-            "#191#Message Box", "Hi! This is a message!", "Nice;Cool");
-
-        if (result >= 0) showMsgBox = false;
-    }*/
-
-
 
     static float f = 0.0f;
     static int counter = 0;

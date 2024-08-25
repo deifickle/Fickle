@@ -6,6 +6,7 @@
 # fickle ignores
 VsProjFiles/
 downloadedResources/
+branding/
 
 # User-specific files
 *.rsuser
@@ -400,3 +401,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/EngineCore/todo.h

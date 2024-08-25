@@ -5,6 +5,9 @@ void BuntingButton::init(const ButtonSpec& spec) {
 	if (spec.m_name) {
 		m_name = spec.m_name;
 	}
+	if (spec.BuntingUserData) {
+		userData = spec.BuntingUserData;
+	}
 }
 
 void BuntingButton::quash() {
@@ -36,6 +39,10 @@ void BuntingImageButton::update() {
 }
 
 void BuntingImageButton::draw() {
-	
 	m_clicked = rlImGuiImageButton(m_name, m_texture);
+
+	if (m_clicked) {
+		if (buntingState.callback.key)
+			buntingState.callback.key(this->userData);
+	}
 }

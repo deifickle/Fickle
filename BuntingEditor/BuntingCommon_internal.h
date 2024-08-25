@@ -22,4 +22,15 @@
 #include "BuntingMacros.h"
 #include "BuntingObject.h"
 
+BUNTING_DECLARE_FUNCTION_PTR(bool, BuntingKeyCallback, void*);
+//typedef bool (*BuntingKeyCallbackFPtr)(void* userData);
+
+struct BuntingEditorState {
+	struct Callbacks {
+		BuntingKeyCallbackFPtr key;
+	}callback;
+};
+
+extern BuntingEditorState buntingState;
+
 #endif // !BUNTING_COMMON_INTERNAL_H
